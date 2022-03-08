@@ -9,7 +9,7 @@ from .models import Comment, Follow, Group, Post, User
 POSTS_LIM = 10
 
 
-# @cache_page(20)
+@cache_page(20)
 def index(request):
     all_posts = Post.objects.all()
     paginator = Paginator(all_posts, POSTS_LIM)
@@ -119,7 +119,6 @@ def add_comment(request, post_id):
     return redirect('posts:post_detail', post_id=post_id)
 
 
-@cache_page(20)
 @login_required
 def follow_index(request):
     authors_ids = Follow.objects.filter(

@@ -25,7 +25,9 @@ class FollowModelTest(TestCase):
                     kwargs={'username': cls.bert.username}),
             reverse('posts:profile_unfollow',
                     kwargs={'username': cls.cecil.username}),
-            reverse('posts:follow_index')
+            reverse('posts:follow_index'),
+            reverse('posts:profile_unfollow',
+                    kwargs={'username': cls.dan.username}),
         ]
         cls.group = Group.objects.create(
             title='just group',
@@ -73,6 +75,18 @@ class FollowModelTest(TestCase):
             Follow.objects.filter(
                 user=self.alice,
                 author=self.cecil
+            ).exists()
+        )
+
+    def test_authorized_client_cant_follow_themself(self):
+        follow_count = Follow.objects.count()
+        response = self.dan_client.get(self.addresses[9])
+        self.assertRedirects(response, self.addresses[3])
+        self.assertNotEqual(Follow.objects.count(), follow_count + 1)
+        self.assertFalse(
+            Follow.objects.filter(
+                user=self.dan,
+                author=self.dan
             ).exists()
         )
 

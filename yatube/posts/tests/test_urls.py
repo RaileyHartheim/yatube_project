@@ -1,5 +1,6 @@
 from http import HTTPStatus
 
+from django.core.cache import cache
 from django.test import Client, TestCase
 
 from ..models import Group, Post, User
@@ -67,6 +68,7 @@ class PostURLTests(TestCase):
             self.another_client,
             self.guest_client
         ]
+        cache.clear()
 
     def test_all_urls_exist_for_post_author(self):
         for address in self.pages_for_author:

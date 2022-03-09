@@ -25,7 +25,6 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <!-- поправить ссылку!-->
             <a class="nav-link {% if view_name  == 'posts:post_create' %}active{% endif %}" 
               href={% url 'posts:post_create' %}
             >
@@ -34,14 +33,14 @@
           </li>
           <li class="nav-item"> 
             <a class="nav-link {% if view_name  == 'users:password_reset' %}active{% endif %} link-light" 
-              href={% url 'users:password_reset' %}
+              href={% url 'password_reset' %}
             >
               Изменить пароль
             </a>
           </li>
           <li class="nav-item"> 
-            <a class="nav-link {% if view_name  == 'users:logout' %}active{% endif %} link-light" 
-              href={% url 'users:logout' %}
+            <a class="nav-link {% if view_name  == 'logout' %}active{% endif %} link-light" 
+              href={% url 'logout' %}
             >
               Выйти
             </a>
@@ -51,8 +50,8 @@
           <li>
           {% else %}
           <li class="nav-item"> 
-            <a class="nav-link {% if view_name  == 'users:login' %}active{% endif %} link-light"
-              href={% url 'users:login' %}
+            <a class="nav-link {% if view_name  == 'login' %}active{% endif %} link-light"
+              href={% url 'login' %}
             >
               Войти
             </a>

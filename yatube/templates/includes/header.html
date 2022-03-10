@@ -32,15 +32,15 @@
             </a>
           </li>
           <li class="nav-item"> 
-            <a class="nav-link {% if view_name  == 'users:password_reset' %}active{% endif %} link-light" 
-              href={% url 'password_reset' %}
+            <a class="nav-link link-light" 
+              href="{% url 'password_reset' %}"
             >
               Изменить пароль
             </a>
           </li>
           <li class="nav-item"> 
-            <a class="nav-link {% if view_name  == 'logout' %}active{% endif %} link-light" 
-              href={% url 'logout' %}
+            <a class="nav-link link-light" 
+              href="{% url 'logout' %}"
             >
               Выйти
             </a>
@@ -51,7 +51,7 @@
           {% else %}
           <li class="nav-item"> 
             <a class="nav-link {% if view_name  == 'login' %}active{% endif %} link-light"
-              href={% url 'login' %}
+              href="{% url 'login' %}"
             >
               Войти
             </a>

@@ -117,3 +117,8 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
     }
 }
+
+
+CACHE_TIME = 20
+
+POSTS_LIM = 10

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
@@ -6,13 +7,11 @@ from django.views.decorators.cache import cache_page
 from .forms import CommentForm, PostForm
 from .models import Follow, Group, Post, User
 
-POSTS_LIM = 10
 
-
-@cache_page(20)
+@cache_page(settings.CACHE_TIME)
 def index(request):
     all_posts = Post.objects.all()
-    paginator = Paginator(all_posts, POSTS_LIM)
+    paginator = Paginator(all_posts, settings.POSTS_LIM)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -24,7 +23,7 @@ def index(request):
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     group_posts = group.posts.all()
-    paginator = Paginator(group_posts, POSTS_LIM)
+    paginator = Paginator(group_posts, settings.POSTS_LIM)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -38,7 +37,7 @@ def profile(request, username):
     author = get_object_or_404(User, username=username)
     author_posts = author.posts.all()
     post_count = author_posts.count()
-    paginator = Paginator(author_posts, POSTS_LIM)
+    paginator = Paginator(author_posts, settings.POSTS_LIM)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     following = (request.user.is_authenticated and request.user != author
@@ -119,7 +118,7 @@ def add_comment(request, post_id):
 @login_required
 def follow_index(request):
     posts = Post.objects.filter(author__following__user=request.user)
-    paginator = Paginator(posts, POSTS_LIM)
+    paginator = Paginator(posts, settings.POSTS_LIM)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {

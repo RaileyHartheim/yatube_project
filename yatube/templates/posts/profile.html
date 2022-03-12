@@ -9,7 +9,7 @@
     <h1>Все посты пользователя {{ author.get_full_name }}</h1>
     <h3>Всего постов: {{ post_count }}</h3>
 
-    {% if author != user %}
+    {% if user.is_authenticated and author != user %}
       {% if following %}
         <a
           class="btn btn-lg btn-light"

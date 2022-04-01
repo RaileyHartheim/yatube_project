@@ -7,10 +7,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$y*-8j0tf6mwe3^*f$r6pg*@zyxuk-xj_+yg+3p390ki!4j$9d'
 
 
-DEBUG = True
+DEBUG = False
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'www.yetanotherblogplatform.pythonanywhere.com',
+    'yetanotherblogplatform.pythonanywhere.com',
+]
 
 
 INSTALLED_APPS = [
@@ -104,7 +108,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'posts:index'
-# LOGOUT_REDIRECT_URL = 'posts:index'
+LOGOUT_REDIRECT_URL = 'posts:index'
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 

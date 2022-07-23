@@ -1,3 +1,26 @@
-# hw05_final
+# Yatube
+### Описание
+Социальная сеть для ведения личных блогов: публикации собственных записей, комментирования чужих и подписок на любимых авторов.
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+### Используемые технологии
+Python 3.8.10
+Django 2.2.19
+
+### Запуск сервера
+- Склонировать репозиторий
+- Установить и активировать виртуальное окружение
+- Выполнить команду установки зависимостей из requirements.txt
+```
+pip install -r requirements.txt
+```
+- Выполнить все необходимые миграции командой из папки с manage.py:
+```
+python3 manage.py migrate
+```
+- Запустить сервер оттуда же:
+```
+python3 manage.py runserver
+```
+
+### Автор проекта
+[Yulia Kazhaeva (Railey Hartheim)](https://github.com/RaileyHartheim)
